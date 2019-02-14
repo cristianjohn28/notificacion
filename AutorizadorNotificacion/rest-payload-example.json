@@ -1,0 +1,38 @@
+{
+  "lookup": "default-stateless-ksession",
+  "commands": [
+    {
+      "insert": {
+        "object": {
+          "com.pe.ripley.autorizadornotificacion.model.Notificacion": {
+            "codCanal": "35104",
+            "codOperacion": "1",
+            "montoTransaccion":410,        
+            "codResolSIA": "1",
+            "codResolCodElemento": "00",
+            "indicadorAutorizOperac": "A",
+            "estadoOperacSIA": "01",
+            "tipoTarjeta": "536762"
+          }
+        },
+        "out-identifier":null
+      }
+    },
+    {
+      "insert": {
+        "object": {
+          "com.pe.ripley.autorizadornotificacion.model.ResponseNotificacion": {
+          }
+        },
+        "out-identifier":"responseNotificacion"
+      }
+    },
+    {
+      "start-process" : {
+        "processId" : "notificacion-Decision-Flow",
+        "parameter" : [ ],
+        "out-identifier" : null
+      }
+    }
+  ]
+}

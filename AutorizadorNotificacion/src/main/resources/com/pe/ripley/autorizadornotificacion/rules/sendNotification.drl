@@ -1,0 +1,112 @@
+//created on: 20/12/2018
+package com.pe.ripley.autorizadornotificacion.rules
+
+//list any import classes here.
+import com.pe.ripley.autorizadornotificacion.model.Notificacion;
+
+
+//declare any global variables here
+
+
+rule "Rule Send Notification"
+
+	dialect "mvel"
+	ruleflow-group "rule-end-flow"
+	no-loop true
+	
+    when
+        inputBussinesRule : Notificacion()
+        response : ResponseNotificacion()
+    then        
+	    if( (inputBussinesRule != null) && (inputBussinesRule.ouputEnvioNotif != null)){
+	
+		    if(inputBussinesRule.ouputEnvioNotif.equals("SI") || inputBussinesRule.ouputEnvioNotif.equals("NO")){		    	
+		    	
+               
+                if(inputBussinesRule.getOuputEnvioNotif() != null){response.setEnvioNotif(inputBussinesRule.getOuputEnvioNotif());}else{response.setEnvioNotif("");}		    	 		    			   
+
+		    	if(inputBussinesRule.getOuputTipoOferta() != null){response.setTipoOferta(inputBussinesRule.getOuputTipoOferta());}else{response.setTipoOferta("");}		    			      
+		        
+		        if(inputBussinesRule.getOuputTipoNotificacion() != null){response.setTipoNotificacion(inputBussinesRule.getOuputTipoNotificacion());}else{response.setTipoNotificacion("");}
+		        
+		        if(inputBussinesRule.getOuputFlagCodComercio() != null){response.setFlagCodComercio(inputBussinesRule.getOuputFlagCodComercio());}else{response.setFlagCodComercio("");} 	        
+		        
+		        if(inputBussinesRule.getOuputFlagSistemaNotificacion() != null){response.setFlagSistemaNotificacion(inputBussinesRule.getOuputFlagSistemaNotificacion());}else{response.setFlagSistemaNotificacion("");} 
+		        
+		        if(inputBussinesRule.getOuputFlagOfertaNotificacion() != null){response.setFlagOfertaNotificacion(inputBussinesRule.getOuputFlagOfertaNotificacion());}else{response.setFlagOfertaNotificacion("");} 
+		        
+		        if(inputBussinesRule.getOuputCantEnvioXDia() != null){response.setCantEnvioXDia(inputBussinesRule.getOuputCantEnvioXDia());}else{response.setCantEnvioXDia(0);} 
+		        
+		        if(inputBussinesRule.getOuputTipProducto() != null){response.setTipProducto(inputBussinesRule.getOuputTipProducto());}else{response.setTipProducto("");} 
+		        
+		        if(inputBussinesRule.getOuputIdPlantillaConsumoSMS() != null){response.setIdPlantillaConsumoSMS(inputBussinesRule.getOuputIdPlantillaConsumoSMS());}else{response.setIdPlantillaConsumoSMS("");} 
+		        
+		        if(inputBussinesRule.getOuputIdPlantillaRetiroSMS() != null){response.setIdPlantillaRetiroSMS(inputBussinesRule.getOuputIdPlantillaRetiroSMS());}else{response.setIdPlantillaRetiroSMS("");} 
+		        
+		        if(inputBussinesRule.getOuputIdPlantillaPinMailerSMS() != null){response.setIdPlantillaPinMailerSMS(inputBussinesRule.getOuputIdPlantillaPinMailerSMS());}else{response.setIdPlantillaPinMailerSMS("");} 
+		        
+		        if(inputBussinesRule.getOuputIdPlantillaILSMS() != null){response.setIdPlantillaILSMS(inputBussinesRule.getOuputIdPlantillaILSMS());}else{response.setIdPlantillaILSMS("");} 
+	        	
+	        	if(inputBussinesRule.getOuputIdPlantillaEFEXSMS() != null){response.setIdPlantillaEFEXSMS(inputBussinesRule.getOuputIdPlantillaEFEXSMS());}else{response.setIdPlantillaEFEXSMS("");} 
+				
+				if(inputBussinesRule.getOuputIdPlantillaSEFSMS() != null){response.setIdPlantillaSEFSMS(inputBussinesRule.getOuputIdPlantillaSEFSMS());}else{response.setIdPlantillaSEFSMS("");} 
+				
+				if(inputBussinesRule.getOuputIdPlantillaConsumoEmail() != null){response.setIdPlantillaConsumoEmail(inputBussinesRule.getOuputIdPlantillaConsumoEmail());}else{response.setIdPlantillaConsumoEmail("");} 
+				
+				if(inputBussinesRule.getOuputIdPlantillaRetiroEmail() != null){response.setIdPlantillaRetiroEmail(inputBussinesRule.getOuputIdPlantillaRetiroEmail());}else{response.setIdPlantillaRetiroEmail("");}  				
+				
+				if(inputBussinesRule.getOuputIdPlantillaOfertaEmail() != null){response.setIdPlantillaOfertaEmail(inputBussinesRule.getOuputIdPlantillaOfertaEmail());}else{response.setIdPlantillaOfertaEmail("");} 				
+				
+				if(inputBussinesRule.getOuputIdPlantillaPINEmail() != null){response.setIdPlantillaPINEmail(inputBussinesRule.getOuputIdPlantillaPINEmail());}else{response.setIdPlantillaPINEmail("");} 				
+				
+				if(inputBussinesRule.getOuputIdPlantillaFisico() != null){response.setIdPlantillaFisico(inputBussinesRule.getOuputIdPlantillaFisico());}else{response.setIdPlantillaFisico("");} 				 
+										
+	    	}else{		    	
+	        response.setEnvioNotif("No");
+	        response.setTipoOferta("");
+	        response.setTipoNotificacion("");
+	        response.setFlagCodComercio("");
+	        response.setFlagSistemaNotificacion("");
+	        response.setFlagOfertaNotificacion("");
+	        response.setCantEnvioXDia(0);
+	        response.setTipProducto("");
+	        response.setIdPlantillaConsumoSMS("");
+	        response.setIdPlantillaRetiroSMS("");
+	        response.setIdPlantillaPinMailerSMS("");
+	        response.setIdPlantillaILSMS("");
+        	response.setIdPlantillaEFEXSMS("");
+			response.setIdPlantillaSEFSMS("");
+			response.setIdPlantillaConsumoEmail("");
+			response.setIdPlantillaRetiroEmail("");
+			response.setIdPlantillaOfertaEmail("");
+			response.setIdPlantillaPINEmail("");
+			response.setIdPlantillaFisico("");			
+	    	
+	    	}		
+    	}else{	    		
+	    	response.setEnvioNotif("No");
+	        response.setTipoOferta("");
+	        response.setTipoNotificacion("");
+	        response.setFlagCodComercio("");
+	        response.setFlagSistemaNotificacion("");
+	        response.setFlagOfertaNotificacion("");
+	        response.setCantEnvioXDia(0);
+	        response.setTipProducto("");
+	        response.setIdPlantillaConsumoSMS("");
+	        response.setIdPlantillaRetiroSMS("");
+	        response.setIdPlantillaPinMailerSMS("");
+	        response.setIdPlantillaILSMS("");
+        	response.setIdPlantillaEFEXSMS("");
+			response.setIdPlantillaSEFSMS("");
+			response.setIdPlantillaConsumoEmail("");
+			response.setIdPlantillaRetiroEmail("");
+			response.setIdPlantillaOfertaEmail("");
+			response.setIdPlantillaPINEmail("");
+			response.setIdPlantillaFisico("");
+    	}
+        
+        System.out.println("¿Se envia notificacion? : [" + response.getEnvioNotif()+"]");     
+        System.out.println("Rule fired : [" + drools.getRule().getName()+"]");
+        		
+end
+

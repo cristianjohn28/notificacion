@@ -1,0 +1,23 @@
+package com.pe.ripley.autorizadornotificacion.rules
+
+
+import com.pe.ripley.autorizadornotificacion.model.Notificacion;
+import com.pe.ripley.autorizadornotificacion.model.ResponseNotificacion;
+
+// declare any global variables here
+// TODO:add a proper logging layer
+// import org.apache.log4j.Logger
+// global Logger LOGGER;
+
+rule "Setting values on Notificacion"
+
+	dialect "mvel"
+	ruleflow-group "initialisation-rules"
+	no-loop true
+	
+    when
+        notificacion : Notificacion()
+    then
+        System.out.println("Rule fired : [" + drools.getRule().getName()+"]");
+
+end
